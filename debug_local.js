@@ -5,7 +5,7 @@ const puppeteer = require('puppeteer');
     
     async function checkSite(url, out) {
         console.log('\n--- Checking ' + url + ' ---');
-        const page = await browser.newPage();
+        const page = await browser.newPage(); page.on('console', msg => console.log('PAGE LOG:', msg.text())); page.on('pageerror', error => console.log('PAGE ERROR:', error.message));
         await page.setViewport({ width: 1280, height: 800 });
         await page.goto(url, { waitUntil: 'networkidle2' });
         await new Promise(r => setTimeout(r, 10000));

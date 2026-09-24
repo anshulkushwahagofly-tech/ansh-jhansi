@@ -1,7 +1,7 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/><link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon32-af94112f.png"><link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon16-9e4401be.png"><meta name="description" content="Anshul Kushwaha | WordPress Developer, SEO Expert & Digital Marketer - Jhansi"><title>Anshul Kushwaha</title><meta name="twitter:card" content="summary_large_image"><meta name="twitter:url" content="https://anshulkushwaha-jhansi.vercel.app/"><meta name="twitter:title" content="Anshul Kushwaha"><meta name="twitter:description" content="Anshul Kushwaha | WordPress Developer, SEO Expert & Digital Marketer - Jhansi"><meta name="twitter:image" content="./assets/images/social.jpg"><meta property="og:title" content="Anshul Kushwaha"><meta property="og:description" content="Anshul Kushwaha | WordPress Developer, SEO Expert & Digital Marketer - Jhansi"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:image" content="./assets/images/social.jpg"><meta property="og:url" content="https://anshulkushwaha-jhansi.vercel.app/"><script type="module" crossorigin src="./assets/index-2eb69c09_v2.js"></script><meta name="keywords" content="Anshul Kushwaha, WordPress Developer, SEO Expert, Google Ads Specialist, Social Media Marketer, Digital Marketing Jhansi, Web Development, WooCommerce, Local SEO, PPC Campaigns, Freelance Developer UP, Best SEO Expert India, Anshuu">
-</head><body>
-<div id="anshuu-logo" style="position:fixed; top:40px; left:40px; z-index:9999; color:white; font-family: monospace, sans-serif; font-size:2rem; font-weight:bold; letter-spacing:4px; pointer-events:none; text-shadow: 0 0 10px rgba(255,255,255,0.5);">ANSHUU</div>
-<div id="social-overlay-container" style="position:fixed; bottom:15%; top:auto; left:50%; transform:translate(-50%, -50%); z-index:9999; pointer-events:none; opacity:0.6; transition: opacity 0.3s ease;">
+const fs = require('fs');
+
+const overlayHTML = `
+<div id="social-overlay-container" style="position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); z-index:9999; pointer-events:none; opacity:0; transition: opacity 0.3s ease;">
     <div id="svg-0" style="display:none; color:white;">
         <!-- LinkedIn -->
         <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
@@ -44,12 +44,16 @@
     };
     
     // Check initial state periodically until App3D is ready
-    //setInterval(() => {
+    setInterval(() => {
         if(document.querySelector('.canvas-container') && !window.overlayInit) {
             window.overlayInit = true;
             setTimeout(() => { window.updateOverlay(0); }, 5000); // Trigger after 5s load
         }
     }, 1000);
 </script>
+`;
 
-</body></html>
+let html = fs.readFileSync('index.html', 'utf8');
+html = html.replace('</body>', overlayHTML + '\n</body>');
+fs.writeFileSync('index.html', html, 'utf8');
+console.log("Updated index.html with SVGs");
