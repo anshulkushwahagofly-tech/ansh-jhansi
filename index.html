@@ -9,8 +9,14 @@
 
 <script>
     
+    let loaderSeen = false;
+    let checkCount = 0;
     const loaderCheck = setInterval(() => {
-        if(!document.getElementById('loader')) {
+        checkCount++;
+        const loader = document.getElementById('loader');
+        if (loader) {
+            loaderSeen = true;
+        } else if (loaderSeen || checkCount > 20) {
             const logo = document.getElementById('anshuu-logo');
             if(logo) logo.style.opacity = '1';
             clearInterval(loaderCheck);
