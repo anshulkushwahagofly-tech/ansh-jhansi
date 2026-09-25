@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://anshulkushwaha-jhansi.vercel.app/sitemap.xml
